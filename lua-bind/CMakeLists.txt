@@ -1,0 +1,18 @@
+MESSAGE("Building ltimer wrapper")
+
+FILE(GLOB_RECURSE LTIMER_C_FILES ${CMAKE_SOURCE_DIR}/heap*.c ${CMAKE_SOURCE_DIR}/timer*.c ${CMAKE_CURRENT_SOURCE_DIR}/*.c)
+
+INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/)
+
+SET(CMAKE_SHARED_LINKER_FLAGS "-lm -llua")
+SET(CMAKE_POSITION_INDEPENDENT_CODE ON)
+
+LIST(REMOVE_ITEM LTIMER_C_FILES ${CMAKE_SOURCE_DIR}/test/test.c)
+
+
+ADD_LIBRARY(ltimer SHARED ${LTIMER_C_FILES})
+set_target_properties(ltimer PROPERTIES OUTPUT_NAME "ltimer")
+set_target_properties(ltimer PROPERTIES SUFFIX ".so")
+set_target_properties(ltimer PROPERTIES PREFIX "")
+
+
