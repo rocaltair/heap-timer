@@ -5,9 +5,8 @@
 extern "C" {
 #endif
 
+#include <stddef.h>
 #include <stdint.h>
-#include <string.h>
-#include "heap-inl.h"
 
 enum timer_flag_t{
 	TIMER_ACTIVE = 1,
@@ -23,7 +22,10 @@ enum timer_flag_t{
   (((h)->flags & (TIMER_CLOSING |  TIMER_CLOSED)) != 0)
 
 struct timer_mgr_s {
-	struct heap timer_heap;
+	struct {
+		void* min;
+		unsigned int nelts;
+	} timer_heap;
 	uint64_t timer_counter;
 	uint64_t time;
 };
@@ -35,7 +37,7 @@ typedef struct timer_s timer_t;
 typedef void(*timer_cb_t)(timer_t *handler);
 
 struct timer_s {
-	struct heap_node heap_node;
+	void* heap_node[3];
 	timer_mgr_t *mgr;
 	uint32_t flags;
 	uint64_t timeout;
@@ -55,7 +57,7 @@ int timer_next_timeout(const timer_mgr_t * mgr);
 void timer_close(timer_t * handle);
 size_t timer_perform(timer_mgr_t *mgr);
 
-uint64_t get_ms_time();
+uint64_t timer_get_ms_time();
 void timer_ms_sleep(uint32_t ms);
 
 int timer_mgr_init(timer_mgr_t *mgr);

@@ -63,7 +63,7 @@ static int timer_less_than(const struct heap_node *ha,
 int timer_mgr_init(timer_mgr_t *mgr)
 {
 	memset(mgr, 0, sizeof(*mgr));
-	mgr->time = get_ms_time();
+	mgr->time = timer_get_ms_time();
 	return 0;
 }
 
@@ -189,7 +189,7 @@ static size_t run_timers(timer_mgr_t * mgr)
 	return count;
 }
 
-uint64_t get_ms_time()
+uint64_t timer_get_ms_time()
 {
 	uint64_t tn;
 	struct timeval tv;
@@ -227,7 +227,7 @@ void timer_ms_sleep(uint32_t ms)
 
 size_t timer_perform(timer_mgr_t *mgr)
 {
-	mgr->time = get_ms_time();
+	mgr->time = timer_get_ms_time();
 	return run_timers(mgr);
 }
 

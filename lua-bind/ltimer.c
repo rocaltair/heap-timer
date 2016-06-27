@@ -253,7 +253,7 @@ static int opencls__ltimer_timer(lua_State *L)
 
 static int lua__timer_timenow(lua_State *L)
 {
-	lua_pushinteger(L, get_ms_time());
+	lua_pushinteger(L, timer_get_ms_time());
 	return 1;
 }
 
