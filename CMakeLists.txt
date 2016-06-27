@@ -8,8 +8,8 @@ set(CMAKE_CXX_FLAGS "-Wall")
 set(CMAKE_CXX_FLAGS_DEBUG "-g3 -Wall")
 set(CMAKE_CXX_FLAGS_RELEASE "-O2 -Wall")
 
-project(proj_timer)
-set(LIBNAME "timer")
+project(proj_htimer)
+set(LIBNAME "htimer")
 
 include_directories(
 	.
@@ -34,7 +34,7 @@ ENDIF (ENABLE_CTEST)
 #)
 
 SET(LIB_LIST
-	timer.c
+	htimer.c
 )
 
 ADD_LIBRARY(${LIBNAME} STATIC

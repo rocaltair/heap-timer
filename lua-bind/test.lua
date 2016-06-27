@@ -1,4 +1,4 @@
-l = require "ltimer"
+l = require "lhtimer"
 
 loop = l.new_mgr()
 
