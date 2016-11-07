@@ -11,10 +11,6 @@ set(CMAKE_CXX_FLAGS_RELEASE "-O2 -Wall")
 project(proj_htimer)
 set(LIBNAME "htimer")
 
-include_directories(
-	.
-)
-
 #option(ENABLE_TCMALLOC "enable tcmalloc of google" ON)
 
 option(ENABLE_CTEST "C_TEST" ON)
@@ -24,6 +20,9 @@ IF (ENABLE_LUA)
 	ADD_SUBDIRECTORY(lua-bind)
 ENDIF (ENABLE_LUA)
 
+include_directories(
+	.
+)
 
 IF (ENABLE_CTEST)
 	ADD_SUBDIRECTORY(test)
