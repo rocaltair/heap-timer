@@ -4,7 +4,7 @@ FILE(GLOB_RECURSE LTIMER_C_FILES ${CMAKE_SOURCE_DIR}/htimer*.c ${CMAKE_CURRENT_S
 
 INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/)
 
-SET(CMAKE_SHARED_LINKER_FLAGS "-lm -llua")
+SET(CMAKE_SHARED_LINKER_FLAGS "-dynamiclib -Wl,-undefined,dynamic_lookup")
 SET(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 LIST(REMOVE_ITEM LTIMER_C_FILES ${CMAKE_SOURCE_DIR}/test/test.c)
@@ -15,4 +15,5 @@ set_target_properties(lhtimer PROPERTIES OUTPUT_NAME "lhtimer")
 set_target_properties(lhtimer PROPERTIES SUFFIX ".so")
 set_target_properties(lhtimer PROPERTIES PREFIX "")
 
+configure_file(${CMAKE_SOURCE_DIR}/lua-bind/test.lua test.lua)
 

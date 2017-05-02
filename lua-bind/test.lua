@@ -10,7 +10,7 @@ for i = 1, 5 do
 	end)
 end
 
-while true do
+while not loop:empty() do
 	loop:perform()
 	-- collectgarbage("collect")
 	local ms = loop:next_timeout()

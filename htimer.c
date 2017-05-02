@@ -231,3 +231,10 @@ size_t htimer_perform(htimer_mgr_t *mgr)
 	return run_timers(mgr);
 }
 
+int htimer_empty(htimer_mgr_t *mgr)
+{
+	const struct heap_node *heap_node;
+	heap_node = heap_min((struct heap *)&mgr->timer_heap);
+	return heap_node == NULL;
+}
+

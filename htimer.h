@@ -56,6 +56,7 @@ uint64_t htimer_get_repeat(const htimer_t * handle);
 int htimer_next_timeout(const htimer_mgr_t * mgr);
 void htimer_close(htimer_t * handle);
 size_t htimer_perform(htimer_mgr_t *mgr);
+int htimer_empty(htimer_mgr_t *mgr);
 
 uint64_t htimer_get_ms_time();
 void htimer_ms_sleep(uint32_t ms);
